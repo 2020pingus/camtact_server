@@ -9,7 +9,7 @@ module.exports = ({ env }) => ({
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'camtact'),
         username: env('DATABASE_USERNAME', 'camtact'),
-        password: env('DATABASE_PASSWORD', 'camtact123!'),
+        password: env('DATABASE_PASSWORD', '2020camtact*!'),
         ssl: env.bool('DATABASE_SSL', false),
       },
       options: {}
