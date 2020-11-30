@@ -22,5 +22,29 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./data2:/var/lib/postgresql/data
+  openvidu:
+    image: openvidu/openvidu-server-kms:2.15.0
+    ports:
+      - "4443:4443"
+    environment:
+      OPENVIDU_RECORDING: "true"
+      OPENVIDU_RECOFDING_PATH: /root/Server/camtact_server/recording
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/Server/camtact_server/recording:/root/Server/camtact_server/recording
+  janus-gateway:
+    image: "canyan/janus-gateway:0.10.7"
+    command: ["/usr/local/bin/janus", "-F", "/usr/local/etc/janus"]
+    ports:
+      - "8188:8188"
+      - "8088:8088"
+      - "8089:8089"
+      - "8889:8889"
+      - "8000:8000"
+      - "7088:7088"
+      - "7089:7089"
+    restart: always
