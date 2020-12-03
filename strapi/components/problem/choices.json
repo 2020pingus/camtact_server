@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_problem_choices",
+  "info": {
+    "name": "Choices",
+    "icon": "list"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "problem.choice-item"
+    },
+    "input": {
+      "type": "json"
+    },
+    "itemCount": {
+      "type": "integer"
+    },
+    "maxSelectCount": {
+      "type": "integer"
+    }
+  }
+}

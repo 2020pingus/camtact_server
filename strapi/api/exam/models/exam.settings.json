@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exams",
+  "info": {
+    "name": "Exam"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "problems": {
+      "collection": "problem"
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "target": {
+      "model": "organization",
+      "via": "exams"
+    },
+    "manager": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "managingExams"
+    },
+    "maxTotalScore": {
+      "type": "float"
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}

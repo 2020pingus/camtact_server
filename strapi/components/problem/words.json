@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_problem_words",
+  "info": {
+    "name": "Words",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "input": {
+      "type": "json"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "problem.word-item"
+    },
+    "itemCount": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,7 +1,8 @@
 # nestjs 
 # nestjs/.gitignore
 
-/data
+/data*
+/etc
 
 # Logs
 logs

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "problems",
+  "info": {
+    "name": "Problem"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    },
+    "problem": {
+      "type": "dynamiczone",
+      "components": [
+        "problem.choices",
+        "problem.words"
+      ]
+    },
+    "order": {
+      "type": "integer"
+    },
+    "maxScore": {
+      "type": "integer"
+    }
+  }
+}

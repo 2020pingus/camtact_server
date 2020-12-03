@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_problem_choice_items",
+  "info": {
+    "name": "ChoiceItem",
+    "icon": "splotch"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "richtext"
+    }
+  }
+}

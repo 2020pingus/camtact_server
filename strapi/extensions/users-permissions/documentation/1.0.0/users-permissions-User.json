@@ -1251,6 +1251,189 @@
               }
             }
           },
+          "managingExams": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "problems": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "datetime"
+                },
+                "endDate": {
+                  "type": "datetime"
+                },
+                "target": {
+                  "type": "string"
+                },
+                "manager": {
+                  "type": "string"
+                },
+                "maxTotalScore": {
+                  "type": "number"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "organizations": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "subOrganization": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "superOrganization": {
+                  "type": "string"
+                },
+                "thumbnail": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "type": {
+                  "type": "string"
+                },
+                "exams": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "profileImage": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Tester",
+              "Manager",
+              "Etc"
+            ]
+          },
           "created_by": {
             "required": [
               "id",
@@ -1375,6 +1558,42 @@
           },
           "role": {
             "type": "string"
+          },
+          "managingExams": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "organizations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Tester",
+              "Manager",
+              "Etc"
+            ]
           },
           "created_by": {
             "type": "string"

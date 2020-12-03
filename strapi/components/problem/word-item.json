@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_problem_word_items",
+  "info": {
+    "name": "WordItem",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "text"
+    }
+  }
+}

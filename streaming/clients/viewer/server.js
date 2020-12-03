@@ -1,29 +1,27 @@
-"use strict";
+const broadcaster = require("../broadcaster/broadcastser");
 
-const { broadcaster, broadcasters } = require("../broadcaster/server");
-
-function beforeOffer(peerConnection) {
-  const audioTransceiver = peerConnection.addTransceiver("audio");
-  const videoTransceiver = peerConnection.addTransceiver("video");
-
-  function onNewBroadcast({ tid }) {
-    console.log(tid, peerConnection);
-    if (tid != peerConnection.tid) return;
-    const { audioTrack, videoTrack } = broadcasters.get(tid);
-    audioTransceiver.sender.replaceTrack(audioTrack);
-    videoTransceiver.sender.replaceTrack(videoTrack);
+class ViewerServer {
+  constructor(tid) {
+    this.tid = tid;
   }
-
-  broadcaster.on("newBroadcast", onNewBroadcast);
-
-  if (broadcasters.has(peerConnection.tid))
-    onNewBroadcast({ tid: peerConnection.tid });
-
-  const { close } = peerConnection;
-  peerConnection.close = function () {
-    broadcaster.removeListener("newBroadcast", onNewBroadcast);
-    return close.apply(this, arguments);
-  };
+  onConnect(p) {
+    if (broadcaster.broadcasters.has(this.tid)) {
+      p.addStream(broadcaster.broadcasters.get(this.tid));
+    }
+    broadcaster.on("stream", (tid) => {
+      if (this.tid == tid) {
+        p.addStream(broadcaster.broadcasters.get(tid));
+      }
+    });
+    p.on("data", (data) => {
+      console.log("" + data);
+    });
+  }
+  init(p) {
+    p.on("stream", (stream) => {
+      console.log("s!");
+    });
+  }
 }
 
-module.exports = { beforeOffer };
+module.exports = { Server: ViewerServer };

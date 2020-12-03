@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_exam_statuses",
+  "info": {
+    "name": "UserExamStatus"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "exam": {
+      "model": "exam"
+    },
+    "enterDate": {
+      "type": "datetime"
+    },
+    "exitDate": {
+      "type": "datetime"
+    },
+    "applicationStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected"
+      ]
+    },
+    "totalScore": {
+      "type": "float"
+    }
+  }
+}

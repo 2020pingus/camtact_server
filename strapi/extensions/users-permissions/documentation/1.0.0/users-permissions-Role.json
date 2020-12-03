@@ -558,6 +558,36 @@
                 "role": {
                   "type": "string"
                 },
+                "managingExams": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "organizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "phoneNumber": {
+                  "type": "string"
+                },
+                "studentId": {
+                  "type": "string"
+                },
+                "birthDate": {
+                  "type": "string"
+                },
+                "profileImage": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },

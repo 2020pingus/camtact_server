@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organizations",
+  "info": {
+    "name": "Organization"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "subOrganization": {
+      "collection": "organization",
+      "via": "superOrganization"
+    },
+    "superOrganization": {
+      "model": "organization",
+      "via": "subOrganization"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "users": {
+      "via": "organizations",
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "School",
+        "Department",
+        "Etc"
+      ]
+    },
+    "exams": {
+      "via": "target",
+      "collection": "exam"
+    }
+  }
+}

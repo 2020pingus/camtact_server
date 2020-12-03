@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/user-exam-statuses",
+      "handler": "user-exam-status.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-exam-statuses/count",
+      "handler": "user-exam-status.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-exam-statuses/:id",
+      "handler": "user-exam-status.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user-exam-statuses",
+      "handler": "user-exam-status.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/user-exam-statuses/:id",
+      "handler": "user-exam-status.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/user-exam-statuses/:id",
+      "handler": "user-exam-status.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
