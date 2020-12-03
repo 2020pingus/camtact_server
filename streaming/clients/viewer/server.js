@@ -1,4 +1,3 @@
-const broadcaster = require("../broadcaster/broadcastser");
 const { broadcasters, viewers } = require("../../peers");
 class ViewerServer {
   constructor({ p, tid, id }) {
@@ -17,7 +16,7 @@ class ViewerServer {
   }
 
   onBroadcasterClosed() {
-    this.p.send(JSON.stringify({ type: "broadcaster closed" }));
+    this.sendData({ type: "broadcaster closed" });
   }
 
   onBroadcasterStream(stream) {
@@ -30,8 +29,17 @@ class ViewerServer {
 
   onData(data) {
     console.log(data);
-    if (broadcaster.map.has(this.tid)) {
+    switch (data.type) {
+      case "remote": {
+        if (broadcasters.has(this.tid)) {
+          broadcasters.get(this.tid).sendData(data);
+        }
+      }
     }
+  }
+
+  sendData(data) {
+    this.p.send(JSON.stringify(data));
   }
 
   onStream(stream) {

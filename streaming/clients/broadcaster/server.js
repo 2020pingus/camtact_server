@@ -31,8 +31,15 @@ class BroadcasterServer {
       .forEach((viewer) => viewer.onBroadcasterStream(this.stream));
   }
 
+  sendData(data) {
+    this.p.send(JSON.stringify(data));
+  }
+
   onClose() {
-    if (broadcasters.get(this.tid).id === this.id) {
+    if (
+      broadcasters.has(this.tid) &&
+      broadcasters.get(this.tid).id === this.id
+    ) {
       broadcasters.delete(this.tid);
       viewers.get(this.tid).forEach((viewer) => viewer.onBroadcasterClosed());
     }
