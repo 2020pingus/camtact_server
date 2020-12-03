@@ -1,6 +1,8 @@
 const SimplePeer = require("simple-peer");
 const axios = require("axios").default;
 const wrtc = require("wrtc");
+const { v4: uuidv4 } = require("uuid");
+const ids = [];
 
 const connectServerBySocket = async (name, tid) => {
   return new Promise((resolve, reject) => {
@@ -46,7 +48,6 @@ const connectServerBySocket = async (name, tid) => {
 
 const connectClientBySocket = async (socket) => {
   return new Promise((resolve, reject) => {
-    let _server;
     const p = new SimplePeer({
       initiator: false,
       wrtc,
@@ -61,23 +62,19 @@ const connectClientBySocket = async (socket) => {
       },
     });
     socket.on("client", ({ name, tid }) => {
-      if (_server) return;
+      socket.on("disconnect", () => {
+        console.log("user disconnected");
+        p.destroy();
+      });
+
+      socket.on("signal", (data) => p.signal(data));
+      p.on("signal", (data) => socket.emit("signal", data));
+
       const { Server } = require(`./clients/${name}/server.js`);
-      _server = new Server(tid);
-      _server.init(p);
-    });
-    socket.on("signal", (data) => p.signal(data));
-    p.on("signal", (data) => socket.emit("signal", data));
-    p.on("connect", () => {
-      console.log("connected!");
-      if (_server) _server.onConnect(p);
-    });
-    p.on("close", () => {
-      console.log("closed!");
-    });
-    socket.on("disconnect", () => {
-      console.log("user disconnected");
-      p.destroy();
+      let id = uuidv4();
+      while (ids.findIndex((_id) => _id === id) !== -1) id = uuidv4();
+      const server = new Server({ p, tid, id });
+      server.init(p);
     });
   });
 };
